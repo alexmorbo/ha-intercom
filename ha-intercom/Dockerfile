@@ -36,8 +36,7 @@ RUN \
     && rm -f -r \
         /root/.composer \
         /root/.npm \
-        /var/www/ha-intercom/.git \
-    \
+        /var/www/ha-intercom/.git
 
 # Copy root filesystem
 COPY rootfs /
