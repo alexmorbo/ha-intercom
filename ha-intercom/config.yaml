@@ -1,0 +1,21 @@
+---
+name: HA Intercom
+version: dev
+slug: ha-intercom
+description: Centrally manage intercom devices
+url: https://github.com/alexmorbo/ha-intercom
+webui: "http://[HOST]:[PORT:19231]"
+startup: system
+init: false
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+ports:
+  19231/tcp: 19231
+ports_description:
+  19231/tcp: Intercom web interface
+schema:
+  log_level: list(trace|debug|info|notice|warning|error|fatal)?

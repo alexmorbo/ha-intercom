@@ -1,0 +1,7 @@
+#!/command/with-contenv bashio
+# ==============================================================================
+# Home Assistant Add-on: HA Intercom
+# Runs the PHP-FPM daemon
+# ==============================================================================
+bashio::log.info "Starting PHP-FPM server..."
+exec php-fpm81 -R --nodaemonize

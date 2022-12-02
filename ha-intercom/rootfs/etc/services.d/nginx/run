@@ -1,0 +1,9 @@
+#!/command/with-contenv bashio
+# ==============================================================================
+# Home Assistant Add-on: HA Intercom
+# Runs the Nginx daemon
+# ==============================================================================
+# Wait for PHP-FPM to become available
+bashio::net.wait_for 9001
+bashio::log.info "Starting NGINX server..."
+exec nginx -g "daemon off;"
