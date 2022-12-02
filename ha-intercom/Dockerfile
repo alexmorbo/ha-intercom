@@ -25,9 +25,8 @@ RUN \
         nodejs=16.17.1-r0 \
         npm=8.10.0-r0 \
     \
-    && git clone --branch "dev" --depth=1 \
-        "https://github.com/alexmorbo/intercom-admin.git" /var/www/ha-intercom \
-    \
+    && git clone --branch "master" --depth=1 \
+        "https://github.com/alexmorbo/intercom-admin.git" /var/www/ha-intercom
     && cd /var/www/ha-intercom/ha-intercom \
     && composer install --no-dev \
     \
@@ -36,8 +35,7 @@ RUN \
     && rm -f -r \
         /root/.composer \
         /root/.npm \
-        /var/www/ha-intercom/.git \
-    \
+        /var/www/ha-intercom/.git
 
 # Copy root filesystem
 COPY rootfs /
