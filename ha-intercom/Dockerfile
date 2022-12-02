@@ -26,7 +26,8 @@ RUN \
         npm=8.10.0-r0 \
     \
     && git clone --branch "master" --depth=1 \
-        "https://github.com/alexmorbo/intercom-admin.git" /var/www/ha-intercom
+        "https://github.com/alexmorbo/intercom-admin.git" /var/www/ha-intercom \
+    \
     && cd /var/www/ha-intercom/ha-intercom \
     && composer install --no-dev \
     \
