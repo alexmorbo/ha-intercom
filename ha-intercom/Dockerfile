@@ -55,6 +55,8 @@ RUN apk add --no-cache \
 # Copy root filesystem
 COPY rootfs /
 
+RUN chmod +x /etc/cont-init.d/*.sh
+
 # Build arguments
 ARG BUILD_ARCH
 ARG BUILD_DATE

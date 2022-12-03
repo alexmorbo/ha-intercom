@@ -9,6 +9,7 @@ if ! bashio::fs.directory_exists "/data/ha-intercom"; then
     bashio::log.debug 'Data directory not initialized, doing that now...'
 
     # Setup structure
+    mkdir -p /data/ha-intercom
     cp -R /var/www/ha-intercom/data /data/ha-intercom
 
     # Ensure file permissions
