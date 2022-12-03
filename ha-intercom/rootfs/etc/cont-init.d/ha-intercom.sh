@@ -9,7 +9,7 @@ if ! bashio::fs.directory_exists "/data/ha-intercom"; then
     bashio::log.debug 'Data directory not initialized, doing that now...'
 
     # Setup structure
-    cp -R /var/www/ha-intercom/ha-intercom/data /data/ha-intercom
+    cp -R /var/www/ha-intercom/data /data/ha-intercom
 
     # Ensure file permissions
     chown -R nginx:nginx /data/ha-intercom
@@ -18,5 +18,5 @@ if ! bashio::fs.directory_exists "/data/ha-intercom"; then
 fi
 
 bashio::log.debug 'Symlinking data directory to persistent storage location...'
-rm -f -r /var/www/ha-intercom/ha-intercom/data
-ln -s /data/ha-intercom /var/www/ha-intercom/ha-intercom/data
+rm -f -r /var/www/ha-intercom/data
+ln -s /data/ha-intercom /var/www/ha-intercom/data

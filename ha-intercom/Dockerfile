@@ -1,5 +1,6 @@
 ARG BUILD_FROM=ghcr.io/hassio-addons/base:12.2.7
 # hadolint ignore=DL3006
+
 FROM ${BUILD_FROM}
 
 # Set shell
@@ -7,9 +8,9 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Setup base
 # hadolint ignore=DL3003
-RUN \
-    apk add --no-cache \
+RUN apk add --no-cache \
         nginx \
+        php81 \
         php81-curl \
         php81-fpm \
         php81-iconv \
@@ -17,18 +18,31 @@ RUN \
         php81-opcache \
         php81-session \
         php81-zip \
-        php81 \
+        php81-ctype \
+        php81-tokenizer \
+        php81-openssl \
+        php81-phar \
+        php81-dom \
+        php81-xml \
+        php81-simplexml \
     \
     && apk add --no-cache --virtual .build-dependencies \
-        composer \
         git \
-        nodejs=16.17.1-r0 \
-        npm=8.10.0-r0 \
+#        nodejs=16.17.1-r0 \
+#        npm=8.10.0-r0 \
+    \
+    && ln -s /usr/bin/php81 /usr/bin/php \
+    && curl -sS https://getcomposer.org/installer | php -- \
+           --filename=composer \
+           --install-dir=/usr/bin \
+           --version=2.4.4 \
+    && chmod +x /usr/bin/composer \
     \
     && git clone --branch "master" --depth=1 \
         "https://github.com/alexmorbo/intercom-admin.git" /var/www/ha-intercom \
     \
-    && cd /var/www/ha-intercom/ha-intercom \
+    && cd /var/www/ha-intercom \
+    && mv .env.docker .env \
     && composer install --no-dev \
     \
     && apk del --no-cache --purge .build-dependencies \
