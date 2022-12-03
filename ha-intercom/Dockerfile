@@ -39,12 +39,13 @@ RUN apk add --no-cache \
            --version=2.4.4 \
     && chmod +x /usr/bin/composer \
     \
-    && cd /var/www && wget -r -nH ftp://one:one@192.168.64.1/ha/ && mv ha ha-intercom \
+    && cd /var/www && wget -r -nH -q -X "/ha/.git,/ha/vendor,/ha/var/*" ftp://one:one@192.168.64.1/ha/ && mv ha ha-intercom \
 #    && git clone --branch "master" --depth=1 \
 #        "https://github.com/alexmorbo/intercom-admin.git" /var/www/ha-intercom \
 #    \
     && cd /var/www/ha-intercom \
-    && mv .env.docker .env \
+    && rm -rf .env && mv .env.docker .env \
+#    && mv .env.docker .env \
     && composer install --no-dev \
     \
     && apk del --no-cache --purge .build-dependencies \
