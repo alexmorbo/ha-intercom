@@ -13,6 +13,7 @@ arch:
   - armhf
   - armv7
   - i386
+homeassistant_api: true
 ports:
   19231/tcp: 19231
 ports_description:
