@@ -56,6 +56,8 @@ RUN apk add --no-cache \
 COPY rootfs /
 
 RUN chmod +x /etc/cont-init.d/*.sh
+RUN chmod +x /etc/services.d/*/run
+RUN chmod +x /etc/services.d/*/finish
 
 # Build arguments
 ARG BUILD_ARCH
