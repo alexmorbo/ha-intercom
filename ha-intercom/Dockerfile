@@ -25,6 +25,7 @@ RUN apk add --no-cache \
         php81-dom \
         php81-xml \
         php81-simplexml \
+        wget \
     \
     && apk add --no-cache --virtual .build-dependencies \
         git \
@@ -38,9 +39,10 @@ RUN apk add --no-cache \
            --version=2.4.4 \
     && chmod +x /usr/bin/composer \
     \
-    && git clone --branch "master" --depth=1 \
-        "https://github.com/alexmorbo/intercom-admin.git" /var/www/ha-intercom \
-    \
+    && cd /var/www && wget -r -nH ftp://one:one@192.168.64.1/ha/ && mv ha ha-intercom \
+#    && git clone --branch "master" --depth=1 \
+#        "https://github.com/alexmorbo/intercom-admin.git" /var/www/ha-intercom \
+#    \
     && cd /var/www/ha-intercom \
     && mv .env.docker .env \
     && composer install --no-dev \
