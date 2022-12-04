@@ -26,6 +26,7 @@ RUN apk add --no-cache \
         php81-dom \
         php81-xml \
         php81-simplexml \
+        php81-xmlwriter \
         wget \
     \
     && apk add --no-cache --virtual .build-dependencies \
@@ -40,7 +41,7 @@ RUN apk add --no-cache \
            --version=2.4.4 \
     && chmod +x /usr/bin/composer \
     \
-    && cd /var/www && wget -r -nH -q -X "/ha/.git,/ha/vendor,/ha/var/*" ftp://one:one@192.168.64.1/ha/ && mv ha ha-intercom \
+    && cd /var/www && wget -r -l 0 -q -nH -X "/ha/.git,/ha/vendor,/ha/var/*" ftp://one:one@192.168.64.1/ha/ && mv ha ha-intercom \
 #    && git clone --branch "master" --depth=1 \
 #        "https://github.com/alexmorbo/intercom-admin.git" /var/www/ha-intercom \
 #    \
@@ -62,6 +63,7 @@ COPY rootfs /
 RUN chmod +x /etc/cont-init.d/*.sh
 RUN chmod +x /etc/services.d/*/run
 RUN chmod +x /etc/services.d/*/finish
+RUN chmod +x /var/www/ha-intercom/bin/console
 
 # Build arguments
 ARG BUILD_ARCH
