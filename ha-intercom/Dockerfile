@@ -10,6 +10,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # hadolint ignore=DL3003
 RUN apk add --no-cache \
         nginx \
+        nginx-mod-http-lua \
         php81 \
         php81-curl \
         php81-fpm \
