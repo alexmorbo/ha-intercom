@@ -49,7 +49,6 @@ RUN apk add --no-cache \
 #    \
     && cd /var/www/app \
     && rm -rf .env && mv .env.docker .env \
-    && mv .env.docker .env \
     && composer install --no-dev \
     \
     && apk del --no-cache --purge .build-dependencies \
