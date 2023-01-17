@@ -50,7 +50,7 @@ RUN apk add --no-cache \
     && cd /var/www/app \
     && ls -la \
     && rm -rf .env && mv .env.docker .env \
-    && composer install --no-dev \
+    && composer install \
     \
     && apk del --no-cache --purge .build-dependencies \
     \
