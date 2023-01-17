@@ -48,6 +48,7 @@ RUN apk add --no-cache \
 #        "https://github.com/alexmorbo/intercom-admin.git" /var/www/app \
 #    \
     && cd /var/www/app \
+    && ls -la \
     && rm -rf .env && mv .env.docker .env \
     && composer install --no-dev \
     \
