@@ -9,7 +9,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # Setup base
 # hadolint ignore=DL3003
 
-COPY ./alexmorbo/intercom-admin /var/www/app
+COPY ./intercom-admin /var/www/app
 
 RUN apk add --no-cache \
         nginx \
