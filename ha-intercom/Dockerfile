@@ -8,6 +8,9 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Setup base
 # hadolint ignore=DL3003
+
+COPY ./alexmorbo/intercom-admin /var/www/app
+
 RUN apk add --no-cache \
         nginx \
         nginx-mod-http-lua \
@@ -41,13 +44,12 @@ RUN apk add --no-cache \
            --version=2.4.4 \
     && chmod +x /usr/bin/composer \
     \
-    && cd /var/www && wget -r -l 0 -q -nH -X "/ha/.git,/ha/vendor,/ha/var/*" ftp://one:one@192.168.64.1/ha/ && mv ha ha-intercom \
 #    && git clone --branch "master" --depth=1 \
-#        "https://github.com/alexmorbo/intercom-admin.git" /var/www/ha-intercom \
+#        "https://github.com/alexmorbo/intercom-admin.git" /var/www/app \
 #    \
-    && cd /var/www/ha-intercom \
+    && cd /var/www/app \
     && rm -rf .env && mv .env.docker .env \
-#    && mv .env.docker .env \
+    && mv .env.docker .env \
     && composer install --no-dev \
     \
     && apk del --no-cache --purge .build-dependencies \
@@ -55,7 +57,7 @@ RUN apk add --no-cache \
     && rm -f -r \
         /root/.composer \
         /root/.npm \
-        /var/www/ha-intercom/.git
+        /var/www/app/.git
 
 # Copy root filesystem
 COPY rootfs /
@@ -63,7 +65,7 @@ COPY rootfs /
 RUN chmod +x /etc/cont-init.d/*.sh
 RUN chmod +x /etc/services.d/*/run
 RUN chmod +x /etc/services.d/*/finish
-RUN chmod +x /var/www/ha-intercom/bin/console
+RUN chmod +x /var/www/app/bin/console
 
 # Build arguments
 ARG BUILD_ARCH
