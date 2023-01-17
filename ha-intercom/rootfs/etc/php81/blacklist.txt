@@ -1,2 +1,2 @@
 /data/ha-intercom/*
-/var/www/ha-intercom/data/*
+/var/www/app/data/*
